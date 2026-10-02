@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=file:./dev.db
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - JWT_SECRET=change-this-in-production-apex-commerce-secret
+    volumes:
+      - db-data:/app/prisma
+      - uploads-data:/app/public/uploads
+    restart: always
+
+volumes:
+  db-data:
+  uploads-data:
